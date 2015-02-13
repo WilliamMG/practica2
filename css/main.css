@@ -1,0 +1,33 @@
+.cabezera{
+	background: #578;
+	height: 150px;
+}
+section{
+	height: 300px;
+	background: #699;
+}
+article{
+	background: #088;
+	height: 300px;
+	width: 60%;
+	float: left;
+	padding:31px;
+	position: relative;
+}
+aside{
+	background: #070;
+	height: 300px;
+	width: 30%;
+	float: right;
+	padding: 35px;
+}
+footer{
+	background: #808;
+	height: 100px;
+	position: relative;
+}
+#imagen{
+	background: #000;
+	width: 100px;
+	height: 100px;
+}
