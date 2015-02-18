@@ -7,6 +7,70 @@
 	<script src="pakages/jquery.js"></script>
 	<script src="js/proyecto.js"></script>
 </head>
+
+<script>
+/*
+*/
+	//function registrar(){
+	$(document).ready(function () {
+	//$('#btnRegistrar').click(function () {	
+		//document.getElementById('formulario1').submit();
+		//alert("dsfsd");
+		/*
+		*/
+		$('#formulario1').submit(function() {
+	        $.ajax({
+	            type: $(this).attr('method'),
+	            url: $(this).attr('action'),
+	            data: $(this).serialize(),
+	            success: function(data) {
+	                //$('#result').html(data);
+	            }
+	        });        
+	        return false;
+	    }); 
+	//});
+	});
+	//}
+
+	function mostrar() {
+		$.ajax({
+			url: "obtenerdatos.php", //url de donde obtener los datos
+			dataType: 'json', //tipo de datos retornados
+			type: 'post', //enviar variables como post
+			success: function (data) {
+				$("#txtDatos").empty();
+                $.each(data, function(idx, obj) {
+                	$("#txtDatos").append("Nombre: "+obj.nombre+"\n");	
+                	$("#txtDatos").append("Apellido: "+obj.apellido+"\n");	
+                	$("#txtDatos").append("Descripcion: "+obj.descripcion+"\n");	
+                	$("#txtDatos").append("-----------------------------------\n");
+				});
+            }
+		});
+	}
+/*
+	GUIA DE CODIGO
+	$(document).ready(function () {
+		$('#btnMostrar').click(function () {
+			$.ajax({
+				url: "obtenerdatos.php", //url de donde obtener los datos
+				dataType: 'json', //tipo de datos retornados
+				type: 'post', //enviar variables como post
+				success: function (data) {
+                    $.each(data, function(idx, obj) {
+                    	$("#txtDatos").append("Nombre: "+obj.nombre+"\n");	
+                    	$("#txtDatos").append("Apellido: "+obj.apellido+"\n");	
+                    	$("#txtDatos").append("Descripcion: "+obj.descripcion+"\n");	
+                    	$("#txtDatos").append("-----------------------------------\n");
+					});
+                }
+			});
+		});
+	});
+*/
+</script>
+
 <body>
 	<header class="cabezera">
 		<table>
@@ -20,32 +84,32 @@
 	</header>
 	<section>
 		<article classs="articulo">
-				<form>
+				<form id="formulario1" action="responce.php" method="post">
 					<p>
 						<label>Nombre</label>
-						<input type="text" id="txtNombre"/><br/>
+						<input type="text" id="txtNombre" name="txtNombre"/><br/>
 					</p>
 					<p>
 					<label>Apellido</label>
-					<input type="text" id="txtApellido"/><br/>
+					<input type="text" id="txtApellido"name="txtApellido"/><br/>
 					</p>
 					<p>
 					<label>Descripcion</label>
-					<input type="text" id="txtDescripcion"/><br/>
+					<input type="text" id="txtDescripcion" name="txtDescripcion"/><br/>
 					</p>
 					<p>
-					<input type="button" id="btnEviar" value="Eviar"/>
+					<input type="submit" id="btnRegistrar" value="Enviar"/>
 					</p>
 				</form>
 		</article>
 		<aside>
 			<p>
-			<input type="text" id="txtDescripcion"/>
-			<input type="button" id="btnEviar" value="Buscar"/>
+			<input type="text" id="txtci"/>
+			<input type="button" id="btnMostrar" value="Mostrar" onclick="mostrar()" />
 			</p>
 
 			<P>
-			<TEXTAREA rows="4" cols="50">
+			<TEXTAREA id="txtDatos" rows="12" cols="50">
 			</TEXTAREA> 
 			</P>
 		</aside>
